@@ -7,13 +7,14 @@ import { ApirequestService } from './services/apirequest.service';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import {  ApexNonAxisChartSeries,  ApexPlotOptions,  ApexChart,  ApexFill,  ApexStroke,  ApexDataLabels
 } from 'ng-apexcharts';
+import { CommonTableComponent } from './shared/common-table/common-table.component';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule, HighchartsChartModule, NgApexchartsModule],
+  imports: [FormsModule, CommonModule, HighchartsChartModule, NgApexchartsModule, CommonTableComponent],
   providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -131,8 +132,6 @@ constructor(private apiRequestService: ApirequestService){}
 
   ngOnInit(): void {
     this.getMembersList();
-
-
   }
 
   getMembersList(){
@@ -147,13 +146,15 @@ constructor(private apiRequestService: ApirequestService){}
     this.tableData.forEach(member => member['isSelected'] = false);
   }
 
-  toggleAll(): void {
-    this.allSelected = !this.allSelected;
-    this.tableData.forEach(member => member.isSelected = this.allSelected);
-  }
 
-  checkIfAllSelected(): void {
-    this.allSelected = this.tableData.every(member => member.isSelected);
+  handleButtonClick(event:any){
+    if (event.buttonName === 'edit') {
+      this.editTeamMember(event.member);
+    }
+    else if (event.buttonName === 'delete') {
+      this.deleteTeamMember(event.index);
+      
+    }
   }
 
 

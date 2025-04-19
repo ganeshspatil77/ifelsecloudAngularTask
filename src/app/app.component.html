@@ -80,110 +80,25 @@
       </div>
     </div>
 
-    <div class="team-table-container">
+    <app-common-table [tableData]="tableData" [tableHeader]="tableHeaders" (buttonClickEvent)="handleButtonClick($event)"></app-common-table>
 
-      <table>
-        <thead>
-          <tr>
-            <th>
-              <input type="checkbox" [checked]="allSelected" (change)="toggleAll()">
-            </th>
-            <th *ngFor="let header of tableHeaders" [class]="header.column_key" [style.text-align]="header.align">
-              {{ header.column_name }}
-            </th>
-            <th class="actions"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let member of tableData; let i = index">
-            <td>
-              <input type="checkbox" [(ngModel)]="member.isSelected" (change)="checkIfAllSelected()">
-            </td>
-            <td class="name">
-              <div class="avatar-container">
-                <span *ngIf="!member?.name?.avatar">{{ member?.name?.first_name?.charAt(0) }}{{
-                  member?.name?.last_name?.charAt(0) }}</span>
-                <img *ngIf="member?.name?.avatar" [src]="member.name.avatar"
-                  alt="{{ member?.name?.first_name }} {{ member?.name?.last_name }}">
-              </div>
-              <div class="name-details">
-                <span class="real-name">{{ member?.name?.first_name }} {{ member?.name?.last_name }}</span>
-                <span class="username">{{ member?.name?.handle }}</span>
-              </div>
-            </td>
-            <td class="status">
-              <span class="status-indicator" [ngClass]="member.status">{{ member.status }}</span>
-            </td>
-            <td class="role">{{ member.role }}</td>
-            <td class="email">
-              <div class="progress-bar-container">
-                <div class="progress-bar" [style.width.%]="member.license_used"></div>
-              </div>
-              <span class="progress-value">{{ member.license_used }}%</span>
-            </td>
-            <td class="teams">
-              <span class="team-tag" *ngFor="let team of member.teams" [style.color]="team.text_color"
-                [style.background-color]="team.background_color">
-                {{ team.value }}
-              </span>
-            </td>
-            <td class="actions">
-              <button class="action-button" (click)="deleteTeamMember(i)">
-                <!-- <svg viewBox="0 0 24 24">
-                  <path fill="currentColor"
-                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12M19 4h-3.5l-1-1h-5l-1 1H5v2h14V4Z" />
-                </svg> -->
-                <i class="fas fa-trash"></i>
-              </button>
-              <button class="action-button" (click)="editTeamMember(member)">
-                <!-- <svg viewBox="0 0 24 24">
-                  <path fill="currentColor"
-                    d="M20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0L11.3 11.3c-.21.21-.06.51.15.71l2 2c.2.2.51.05.71-.15L20.71 7.04m-1.58 1.58L13 20l-4.25 1.55L4 15.75l1.55-4.25L12 4l8.29 8.29-1.57 1.57Z" />
-                </svg> -->
-                <i class="fa fa-light fa-pen"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-
-
-      <div class="table-footer">
-        <button class="report-btn">
-          Previous
-        </button>
-        <div class="pagination-numbers">
-          <button class="report-btn">1</button>
-          <button class="report-btn">2</button>
-          <button class="report-btn">3</button>
-          <span>...</span>
-          <button class="report-btn">9</button>
-          <button class="report-btn">10</button>
-        </div>
-        <button class="report-btn">
-          Next
-        </button>
-      </div>
-      <div class="confirmation-popup" *ngIf="showConfirmation">
-        <div class="popup-content">
-          <h3>Delete Confirmation !!</h3>
-          <p>Are you sure you want to delete this Member?</p>
-          <div class="popup-actions">
-            <button class="confirm-button" (click)="confirmDelete()">Yes, Delete</button>
-            <button class="cancel-button" (click)="closeConfirmationPopup()">Cancel</button>
-          </div>
+    <div class="confirmation-popup" *ngIf="showConfirmation">
+      <div class="popup-content">
+        <h3>Delete Confirmation !!</h3>
+        <p>Are you sure you want to delete this Member?</p>
+        <div class="popup-actions">
+          <button class="confirm-button" (click)="confirmDelete()">Yes, Delete</button>
+          <button class="cancel-button" (click)="closeConfirmationPopup()">Cancel</button>
         </div>
       </div>
+    </div>
 
-      <div class="edit-popup" *ngIf="showEditPopUp">
-        <div class="popup-content">
-          <h3>Edit Member</h3>
-          <p>{{ editMemberData?.name?.first_name }} {{ editMemberData?.name?.last_name }}</p>
-          <div class="popup-actions">
-            <!-- <button class="confirm-button" (click)="confirmDelete()">Yes, Delete</button> -->
-            <button class="cancel-button" (click)="closeConfirmationPopup()">Close</button>
-          </div>
+    <div class="edit-popup" *ngIf="showEditPopUp">
+      <div class="popup-content">
+        <h3>Edit Member</h3>
+        <p>{{ editMemberData?.name?.first_name }} {{ editMemberData?.name?.last_name }}</p>
+        <div class="popup-actions">
+          <button class="cancel-button" (click)="closeConfirmationPopup()">Close</button>
         </div>
       </div>
     </div>
