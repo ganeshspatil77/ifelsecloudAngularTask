@@ -16,10 +16,6 @@ export class CommonTableComponent implements OnInit {
   @Output() buttonClickEvent: EventEmitter<any> = new EventEmitter<any>();
 
   allSelected: boolean = false;
-  showConfirmation: boolean = false;
-  showEditPopUp: boolean = false;
-  itemToEditIndex: number = -1;
-  editMemberData:any = {}
 
   ngOnInit(): void {
   }

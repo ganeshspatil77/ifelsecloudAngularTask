@@ -205,3 +205,26 @@
       background-color: #eee;
     }
   }
+
+  .team-members-container {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    padding: 20px;
+  }
+  
+  .team-members-text {
+    font-size: 1rem; 
+    color: #333; 
+    margin-right: 0.5rem; 
+  }
+  
+  .user-count-badge {
+    background-color: #f0f0f7; 
+    color: #7e57c2; 
+    font-size: 0.8rem; 
+    padding: 0.2rem 0.5rem; 
+    border-radius: 0.75rem; 
+    white-space: nowrap; 
+    
+  }
