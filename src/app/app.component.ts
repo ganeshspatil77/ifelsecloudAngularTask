@@ -79,7 +79,7 @@ export class AppComponent implements OnInit {
         name: 'Tier 3',
         type: 'column',
         data: [20, 25, 15, 20, 15, 30, 20, 22, 20, 24, 28, 22],
-        color: '#624af2'//'#e1dff4'
+        color: '#624af2'
       }
     ]
   };
